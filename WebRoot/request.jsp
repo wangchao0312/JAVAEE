@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'exercise.jsp' starting page</title>    
+    <title>My JSP 'request.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,37 +23,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <%!
-  //返回99乘法表
-  String print()
-  {
-      String s="";
-      for(int i=1;i<=9;i++)
-      {
-          for(int j=1;j<=i;j++)
-          {
-             s+=i+"*"+j+"="+(i*j)+"    ";
-          }
-          s+="<br>";//追加换行标签
-      }
-      return s;
-  } 
-  //JSP内置out对象，使用脚本方式调用，打印乘法表
-  void print2(JspWriter out)throws Exception
-  {
-      for(int i=1;i<=9;i++)
-      {
-          for(int j=1;j<=i;j++)
-          {
-             out.println(i+"*"+j+"="+i*j+"&nbsp&nbsp&nbsp&nbsp&nbsp");
-          }     
-          out.println("<br>");
-           }
-  }
-  
-   %>
-  <h1>九九乘法表</h1>
-  <%=print() %>
-  <% print2(out); %>
+<h1>request 内置对象</h1>
+<%
+	request.setCharacterEncoding("utf-8");//解决中文乱码问题,无法解决URL中文乱码问题
+ %>
+用户名：<%=request.getParameter("username") %><br>
+爱好：<%
+if(request.getParameterValues("favourite")!=null){
+	String[] favourite=request.getParameterValues("favourite");
+	for(String s:favourite)
+		out.println(s+"&nbsp");}
+
+	%>
+
   </body>
 </html>

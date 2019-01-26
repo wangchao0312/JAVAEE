@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'exercise.jsp' starting page</title>    
+    <title>My JSP 'Logging.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,37 +23,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <%!
-  //返回99乘法表
-  String print()
-  {
-      String s="";
-      for(int i=1;i<=9;i++)
-      {
-          for(int j=1;j<=i;j++)
-          {
-             s+=i+"*"+j+"="+(i*j)+"    ";
-          }
-          s+="<br>";//追加换行标签
-      }
-      return s;
-  } 
-  //JSP内置out对象，使用脚本方式调用，打印乘法表
-  void print2(JspWriter out)throws Exception
-  {
-      for(int i=1;i<=9;i++)
-      {
-          for(int j=1;j<=i;j++)
-          {
-             out.println(i+"*"+j+"="+i*j+"&nbsp&nbsp&nbsp&nbsp&nbsp");
-          }     
-          out.println("<br>");
-           }
-  }
+  	<h1>用户登录</h1>
+  	<hr>
+  	<form action="doLogin.jsp" name="loginForm" methord="post">
+  		<table>
+  			<tr>
+  				<td>用户名</td>
+  				<td><input type="text" name="username"/></td>
+  			</tr>
+  			<tr>
+  			<td>密码</td>
+  			<td><input type="password" name="pass"/></td>
+  			</tr>
+  			<tr>
+  			<td colspan="2"><input type="submit" value="登录"></td>
+  			</tr>
+  		</table>
+  	</form>  
   
-   %>
-  <h1>九九乘法表</h1>
-  <%=print() %>
-  <% print2(out); %>
   </body>
 </html>
